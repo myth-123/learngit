@@ -1,0 +1,133 @@
+html{
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  width:100%;
+  height:100%;
+}
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+}
+.mainSection{
+  height:100%;
+  padding-top:180px;
+  background:#f3f3f3;
+}
+a{
+  text-decoration:none;
+  cursor:pointer;
+}
+.header{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:70px;
+  background:#0f91ff;
+  line-height:70px;
+  color:white;
+  padding:0 20px;
+  box-sizing:border-box;
+  z-index:5;
+}
+ul{
+  padding:0;
+  margin:10px 0 0 0;
+}
+ul li{
+  list-style:none;
+}
+.linkBox{
+  border: 1px solid #d3d3d3;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 5px;
+  border-radius: 0 4px 4px 4px;
+  margin-top: -3px;
+  position: relative;
+}
+.navSection{
+  padding: 68px 5px 0;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 4;
+}
+.navBox{
+  width:100%;
+  height:30px;
+}
+.navBox li,.navBox li>a{
+  display:inline-block;
+}
+.navBox li>a{
+  padding:0 20px;
+  height:30px;
+  line-height:30px;
+  border: 1px solid #d3d3d3;
+  background: #f7f7f7;
+}
+.linkBox li{
+  display:inline-block;
+}
+.linkBox a{
+  display:inline-block;
+  width: 60px;
+  height:60px;
+  font-size:12px;
+  border-radius:6px;
+  color:white;
+  line-height:60px;
+  text-align:center;
+  background:#ff887a;
+  margin:10px;
+  transition:0.2s;
+}
+.linkBox>li:nth-child(4n+1)>a{
+  background:#ff887a;
+}
+.linkBox>li:nth-child(4n+2)>a{
+  background:#be95f5;
+}
+.linkBox>li:nth-child(4n+3)>a{
+  background:#ff99c2;
+}
+.linkBox>li:nth-child(4n+4)>a{
+  background:#5db8e7;
+}
+.linkBox a.router-link-active,.linkBox a.childActive{
+  border-radius:50%;
+}
+footer{
+  width:100%;
+  height:50px;
+  border-top:1px solid #666;
+  line-height:50px;
+  font-size:16px;
+  text-align:center;
+  position:fixed;
+  bottom:0;
+}
+.navBox li>a{
+  margin-right:4px;
+  position: relative;
+  z-index: 2;
+  border-bottom:0;
+  height:26px;
+}
+.navBox li>a.bigActive{
+  background:#fff;
+  height:28px;
+}
+table{
+  width:100%;
+  border-collapse: collapse;
+}
+td,th{
+  border:1px solid #e3e3e3;
+  line-height:30px;
+  text-align:center;
+}

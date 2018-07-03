@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbzl.dev.ibom.system.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.hbzl.dev.ibom.system.model.Role" >
+    <id column="id_" property="id" jdbcType="VARCHAR" />
+    <result column="role_code_" property="roleCode" jdbcType="VARCHAR" />
+    <result column="role_name_" property="roleName" jdbcType="VARCHAR" />
+    <result column="parent_role_id_" property="parentRoleId" jdbcType="VARCHAR" />
+    <result column="desc_" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_, role_code_, role_name_, parent_role_id_, desc_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_role
+    where id_ = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from system_role
+    where id_ = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hbzl.dev.ibom.system.model.Role" >
+    insert into system_role (id_, role_code_, role_name_, 
+      parent_role_id_, desc_)
+    values (#{id,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{parentRoleId,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbzl.dev.ibom.system.model.Role" >
+    insert into system_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id_,
+      </if>
+      <if test="roleCode != null" >
+        role_code_,
+      </if>
+      <if test="roleName != null" >
+        role_name_,
+      </if>
+      <if test="parentRoleId != null" >
+        parent_role_id_,
+      </if>
+      <if test="desc != null" >
+        desc_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentRoleId != null" >
+        #{parentRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbzl.dev.ibom.system.model.Role" >
+    update system_role
+    <set >
+      <if test="roleCode != null" >
+        role_code_ = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        role_name_ = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentRoleId != null" >
+        parent_role_id_ = #{parentRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc_ = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_ = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbzl.dev.ibom.system.model.Role" >
+    update system_role
+    set role_code_ = #{roleCode,jdbcType=VARCHAR},
+      role_name_ = #{roleName,jdbcType=VARCHAR},
+      parent_role_id_ = #{parentRoleId,jdbcType=VARCHAR},
+      desc_ = #{desc,jdbcType=VARCHAR}
+    where id_ = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getUserRolesByUserName" resultType="java.lang.String" parameterType="java.lang.String" >
+	SELECT
+		role_id_
+	FROM
+		system_re_user_role t1,
+		SYSTEM_USER t2
+	WHERE
+		t1.user_id_ = t2.id_
+	AND t2.user_name_ = #{userName,jdbcType=VARCHAR}
+  </select>  
+</mapper>

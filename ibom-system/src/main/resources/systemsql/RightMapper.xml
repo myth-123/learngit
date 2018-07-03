@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbzl.dev.ibom.system.mapper.RightMapper" >
+  <resultMap id="BaseResultMap" type="com.hbzl.dev.ibom.system.model.Right" >
+    <id column="id_" property="id" jdbcType="VARCHAR" />
+    <result column="right_code_" property="rightCode" jdbcType="VARCHAR" />
+    <result column="right_name_" property="rightName" jdbcType="VARCHAR" />
+    <result column="right_level_" property="rightLevel" jdbcType="VARCHAR" />
+    <result column="parent_right_id_" property="parentRightId" jdbcType="VARCHAR" />
+    <result column="desc_" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_, right_code_, right_name_, right_level_, parent_right_id_, desc_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_right
+    where id_ = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from system_right
+    where id_ = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hbzl.dev.ibom.system.model.Right" >
+    insert into system_right (id_, right_code_, right_name_, 
+      right_level_, parent_right_id_, desc_
+      )
+    values (#{id,jdbcType=VARCHAR}, #{rightCode,jdbcType=VARCHAR}, #{rightName,jdbcType=VARCHAR}, 
+      #{rightLevel,jdbcType=VARCHAR}, #{parentRightId,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbzl.dev.ibom.system.model.Right" >
+    insert into system_right
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id_,
+      </if>
+      <if test="rightCode != null" >
+        right_code_,
+      </if>
+      <if test="rightName != null" >
+        right_name_,
+      </if>
+      <if test="rightLevel != null" >
+        right_level_,
+      </if>
+      <if test="parentRightId != null" >
+        parent_right_id_,
+      </if>
+      <if test="desc != null" >
+        desc_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCode != null" >
+        #{rightCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightName != null" >
+        #{rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightLevel != null" >
+        #{rightLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentRightId != null" >
+        #{parentRightId,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbzl.dev.ibom.system.model.Right" >
+    update system_right
+    <set >
+      <if test="rightCode != null" >
+        right_code_ = #{rightCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightName != null" >
+        right_name_ = #{rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightLevel != null" >
+        right_level_ = #{rightLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentRightId != null" >
+        parent_right_id_ = #{parentRightId,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc_ = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_ = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbzl.dev.ibom.system.model.Right" >
+    update system_right
+    set right_code_ = #{rightCode,jdbcType=VARCHAR},
+      right_name_ = #{rightName,jdbcType=VARCHAR},
+      right_level_ = #{rightLevel,jdbcType=VARCHAR},
+      parent_right_id_ = #{parentRightId,jdbcType=VARCHAR},
+      desc_ = #{desc,jdbcType=VARCHAR}
+    where id_ = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getRoleRightByRoleId" resultType="java.lang.String" parameterType="java.lang.String">
+	SELECT
+		right_code_
+	FROM
+		system_right t1,
+		system_re_role_right t2
+	WHERE
+		t1.id_ = t2.right_id_
+	AND t2.role_id_ IN 
+		<foreach item="item" index="index" collection="roleIdList" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </select>  
+</mapper>

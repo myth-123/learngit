@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hbzl.dev.ibom.system.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.hbzl.dev.ibom.system.model.Department" >
+    <id column="id_" property="id" jdbcType="VARCHAR" />
+    <result column="department_code_" property="departmentCode" jdbcType="VARCHAR" />
+    <result column="department_name_" property="departmentName" jdbcType="VARCHAR" />
+    <result column="parent_id_" property="parentId" jdbcType="VARCHAR" />
+    <result column="level_" property="level" jdbcType="VARCHAR" />
+    <result column="tel_" property="tel" jdbcType="VARCHAR" />
+    <result column="position_" property="position" jdbcType="VARCHAR" />
+    <result column="duty_" property="duty" jdbcType="VARCHAR" />
+    <result column="desc_" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_, department_code_, department_name_, parent_id_, level_, tel_, position_, duty_, 
+    desc_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_department
+    where id_ = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from system_department
+    where id_ = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hbzl.dev.ibom.system.model.Department" >
+    insert into system_department (id_, department_code_, department_name_, 
+      parent_id_, level_, tel_, 
+      position_, duty_, desc_
+      )
+    values (#{id,jdbcType=VARCHAR}, #{departmentCode,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{duty,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbzl.dev.ibom.system.model.Department" >
+    insert into system_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id_,
+      </if>
+      <if test="departmentCode != null" >
+        department_code_,
+      </if>
+      <if test="departmentName != null" >
+        department_name_,
+      </if>
+      <if test="parentId != null" >
+        parent_id_,
+      </if>
+      <if test="level != null" >
+        level_,
+      </if>
+      <if test="tel != null" >
+        tel_,
+      </if>
+      <if test="position != null" >
+        position_,
+      </if>
+      <if test="duty != null" >
+        duty_,
+      </if>
+      <if test="desc != null" >
+        desc_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCode != null" >
+        #{departmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbzl.dev.ibom.system.model.Department" >
+    update system_department
+    <set >
+      <if test="departmentCode != null" >
+        department_code_ = #{departmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        department_name_ = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id_ = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level_ = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel_ = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position_ = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        duty_ = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc_ = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_ = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbzl.dev.ibom.system.model.Department" >
+    update system_department
+    set department_code_ = #{departmentCode,jdbcType=VARCHAR},
+      department_name_ = #{departmentName,jdbcType=VARCHAR},
+      parent_id_ = #{parentId,jdbcType=VARCHAR},
+      level_ = #{level,jdbcType=VARCHAR},
+      tel_ = #{tel,jdbcType=VARCHAR},
+      position_ = #{position,jdbcType=VARCHAR},
+      duty_ = #{duty,jdbcType=VARCHAR},
+      desc_ = #{desc,jdbcType=VARCHAR}
+    where id_ = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
